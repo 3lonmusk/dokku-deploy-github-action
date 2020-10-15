@@ -8,6 +8,10 @@ inputs:
   ssh-private-key:
     description: "The ssh private key to the dokku instance. WARNING: use a secret! Do not pass a plain text value!"
     required: true
+  ssh-port:
+    description: "The ssh port"
+    required: false
+    default: "22"
   dokku-user:
     description: "The user to use for ssh (Default: dokku)"
     required: false
