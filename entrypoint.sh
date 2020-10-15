@@ -22,8 +22,14 @@ git remote add deploy "$git_repo"
 # Prepare to push to Dokku git repository
 REMOTE_REF="$GITHUB_SHA:refs/heads/$DOKKU_REMOTE_BRANCH"
 
-GIT_COMMAND="git fetch --unshallow && git push deploy $REMOTE_REF $GIT_PUSH_FLAGS"
+# Fetch git repo
+GIT_COMMAND="git fetch --unshallow"
 echo "GIT_COMMAND=$GIT_COMMAND"
 
+GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 55000" $GIT_COMMAND
+
 # Push to Dokku git repository
+GIT_COMMAND="git push deploy $REMOTE_REF $GIT_PUSH_FLAGS"
+echo "GIT_COMMAND=$GIT_COMMAND"
+
 GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 55000" $GIT_COMMAND
