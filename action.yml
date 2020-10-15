@@ -31,6 +31,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.ssh-private-key }}
+    - ${{ inputs.ssh-port }}
     - ${{ inputs.dokku-user }}
     - ${{ inputs.dokku-host }}
     - ${{ inputs.app-name }}
